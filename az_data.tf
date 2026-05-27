@@ -16,5 +16,5 @@ data "aws_ec2_instance_type_offerings" "example" {
     values = ["us-east-1a"]
   }
 
-  location_type = "availability-zone-id"
+  location_type = "availability-zone"
 }
