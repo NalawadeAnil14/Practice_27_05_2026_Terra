@@ -12,6 +12,8 @@ module "myec2_server" {
   vpc_security_group_ids = [module.mysg.security_group_id]
   subnet_id              = module.myvpc.public_subnets[0]
 
+  associate_public_ip_address = true
+
   user_data = file("${path.module}/extra/userdata.sh")
 
   tags = local.common_tags
