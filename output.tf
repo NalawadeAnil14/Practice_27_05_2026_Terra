@@ -3,6 +3,6 @@ output "azs" {
 }
 
 output "instance-type_offerings" {
-  value = data.aws_ec2_instance_type_offerings.example.instance_type_offerings
+  value = data.aws_ec2_instance_type_offerings.example.instance_types
 }
 
