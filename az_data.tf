@@ -6,6 +6,7 @@ data "aws_availability_zones" "azs" {
 }
 
 data "aws_ec2_instance_type_offerings" "example" {
+  for_each = toset(data.aws_availability_zones.azs.names)
   filter {
     name   = "instance-type"
     values = ["t3.micro"]
@@ -13,7 +14,7 @@ data "aws_ec2_instance_type_offerings" "example" {
 
   filter {
     name   = "location"
-    values = ["us-east-1a"]
+    values = [each.key]
   }
 
   location_type = "availability-zone"
