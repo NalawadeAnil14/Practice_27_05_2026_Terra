@@ -9,8 +9,8 @@ module "myvpc" {
 
   azs = local.azs
 
-  public_subnets  = [for k, v in azs : cidrsubnet(cidr, 8, k)]
-  private_subnets = [for k, v in azs : cidrsubnet(cidr, 8, k + 4)]
+  public_subnets  = [for k, v in local.azs : cidrsubnet(var.vpc-cidr, 8, k)]
+  private_subnets = [for k, v in local.azs : cidrsubnet(var.vpc-cidr, 8, k + 4)]
 
   enable_dns_hostnames = true
   enable_dns_support   = true
