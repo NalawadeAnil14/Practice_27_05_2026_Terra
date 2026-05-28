@@ -11,4 +11,5 @@ module "my_vpc" {
   private_subnet_cidr = var.private_subnet_cidr
   public_subnet_cidr  = var.public_subnet_cidr
   azs                 = var.azs
+  azs_count           = var.azs_count
 }

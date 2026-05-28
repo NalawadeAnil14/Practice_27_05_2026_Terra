@@ -48,3 +48,9 @@ variable "private_subnet_cidr" {
 variable "name" {
   default = "pract"
 }
+
+variable "azs_count" {
+  description = "Number of availability zones to use for subnets"
+  type        = number
+  default     = 2
+}
