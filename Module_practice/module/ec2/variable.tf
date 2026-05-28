@@ -10,6 +10,3 @@ variable "instance_type" {
   default     = "t3.micro"
 }
 
-variable "asch" {
-  default = "asch"
-}
