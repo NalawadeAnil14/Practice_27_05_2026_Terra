@@ -5,12 +5,12 @@ output "vpc_id" {
 
 output "public_subnet_ids" {
   description = "IDs of the created public subnets"
-  value       = aws_subnet.public_subnet[*].id
+  value       = [for sub in aws_subnet.public_subnet : sub.id]
 }
 
 output "private_subnet_ids" {
   description = "IDs of the created private subnets"
-  value       = aws_subnet.private_subnet[*].id
+  value       = [for sub in aws_subnet.private_subnet : sub.id]
 }
 
 output "internet_gateway_id" {
