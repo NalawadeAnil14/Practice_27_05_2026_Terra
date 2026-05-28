@@ -51,7 +51,7 @@ resource "aws_route_table" "public_rout_table" {
   }
 
   tags = {
-    Name = "${name}-public-rout-table"
+    Name = "${var.name}-public-rout-table"
   }
 }
 

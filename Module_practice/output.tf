@@ -23,5 +23,5 @@ output "private_subnet_ids" {
 }
 
 output "availability_zones" {
-  value = module.my_vpc.availability_zones
+  value = module.my_vpc.availibilityzones
 }
