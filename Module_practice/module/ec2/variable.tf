@@ -10,3 +10,11 @@ variable "instance_type" {
   default     = "t3.micro"
 }
 
+variable "subnet_id" {
+  description = "ID of the subnet to launch the EC2 instance in"
+  type        = string
+}
+
+variable "name" {
+  default = "pract"
+}
