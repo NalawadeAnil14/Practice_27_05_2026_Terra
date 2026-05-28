@@ -16,29 +16,29 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_subnet" "public_subnet" {
   vpc_id = aws_vpc.main_vpc.id
 
-  count      = length(local.azs)
-  cidr_block = cidrsubnet(var.cidr_block, 8, count.index)
+  for_each   = toset(local.azs)
+  cidr_block = cidrsubnet(var.cidr_block, 8, index(local.azs, each.key))
 
-  availability_zone = local.azs[count.index]
+  availability_zone = each.key
 
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.name}-public-subnet-${count.index + 1}"
+    Name = "${var.name}-public-subnet-${index(local.azs, each.key) + 1}"
   }
 }
 
 resource "aws_subnet" "private_subnet" {
   vpc_id = aws_vpc.main_vpc.id
 
-  count = length(local.azs)
+  for_each = toset(local.azs)
 
-  cidr_block = cidrsubnet(var.cidr_block, 8, count.index + length(local.azs))
+  cidr_block = cidrsubnet(var.cidr_block, 8, index(local.azs, each.key) + 100)
 
-  availability_zone = local.azs[count.index]
+  availability_zone = each.key
 
   tags = {
-    Name = "${var.name}-private-subnet-${count.index + 1}"
+    Name = "${var.name}-private-subnet-${index(local.azs, each.key) + 1}"
   }
 }
 
@@ -56,7 +56,8 @@ resource "aws_route_table" "public_rout_table" {
 }
 
 resource "aws_route_table_association" "rtassociation" {
-  count          = length(aws_subnet.public_subnet)
+  for_each = aws_subnet.public_subnet
+
   route_table_id = aws_route_table.public_rout_table.id
-  subnet_id      = aws_subnet.public_subnet[count.index].id
+  subnet_id      = each.value.id
 }
