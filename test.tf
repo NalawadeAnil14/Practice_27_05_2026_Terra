@@ -19,7 +19,7 @@ data "aws_availability_zones" "available" {
 
 resource "aws_instance" "myec2" {
 
-  for_each          = toset(slice(data.aws_availability_zones.available.names,0,3))
+  for_each          = toset(slice(data.aws_availability_zones.available.names, 0, 3))
   ami               = "ami-00e801948462f718a"
   instance_type     = "t3.micro"
   availability_zone = each.value
