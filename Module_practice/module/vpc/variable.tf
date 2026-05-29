@@ -10,12 +10,6 @@ variable "azs" {
   default     = ["us-east-1a", "us-east-1b"]
 }
 
-variable "azs_count" {
-  description = "Number of availability zones to use for subnets"
-  type        = number
-  default     = 2
-}
-
 variable "public_subnet_cidr" {
   description = "List of public subnet cidr"
   type        = list(string)

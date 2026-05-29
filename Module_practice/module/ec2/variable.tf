@@ -22,3 +22,13 @@ variable "name" {
 variable "instance_count" {
   default = 1
 }
+
+variable "vpc_security_group_ids" {
+  description = "ID of the security group to associate with the EC2 instance"
+  type        = string
+}
+
+variable "user_data" {
+  description = "User data script to configure the EC2 instance"
+  type        = string
+}

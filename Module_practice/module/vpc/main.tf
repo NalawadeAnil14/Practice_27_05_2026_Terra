@@ -16,29 +16,29 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_subnet" "public_subnet" {
   vpc_id = aws_vpc.main_vpc.id
 
-  for_each   = toset(local.azs)
-  cidr_block = cidrsubnet(var.cidr_block, 8, index(local.azs, each.key))
+  for_each   = toset(var.azs)
+  cidr_block = cidrsubnet(var.cidr_block, 8, index(var.azs, each.key))
 
   availability_zone = each.key
 
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.name}-public-subnet-${index(local.azs, each.key) + 1}"
+    Name = "${var.name}-public-subnet-${index(var.azs, each.key) + 1}"
   }
 }
 
 resource "aws_subnet" "private_subnet" {
   vpc_id = aws_vpc.main_vpc.id
 
-  for_each = toset(local.azs)
+  for_each = toset(var.azs)
 
-  cidr_block = cidrsubnet(var.cidr_block, 8, index(local.azs, each.key) + 100)
+  cidr_block = cidrsubnet(var.cidr_block, 8, index(var.azs, each.key) + 100)
 
   availability_zone = each.key
 
   tags = {
-    Name = "${var.name}-private-subnet-${index(local.azs, each.key) + 1}"
+    Name = "${var.name}-private-subnet-${index(var.azs, each.key) + 1}"
   }
 }
 

@@ -19,5 +19,5 @@ output "internet_gateway_id" {
 }
 
 output "availibilityzones" {
-  value = local.azs
+  value = var.azs
 }
