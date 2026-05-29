@@ -18,3 +18,7 @@ variable "subnet_id" {
 variable "name" {
   default = "pract"
 }
+
+variable "instance_count" {
+  default = 1
+}

@@ -1,10 +1,11 @@
 module "ec2-server" {
 
-  for_each      = toset(module.my_vpc.public_subnet_ids)
-  source        = "./module/ec2"
-  ami           = var.module_ami
-  instance_type = var.module_instance_type
-  subnet_id     = each.value
+  for_each       = local.numbered_subnets
+  source         = "./module/ec2"
+  ami            = var.module_ami
+  instance_type  = var.module_instance_type
+  subnet_id      = each.value
+  instance_count = each.key
 }
 
 module "my_vpc" {
