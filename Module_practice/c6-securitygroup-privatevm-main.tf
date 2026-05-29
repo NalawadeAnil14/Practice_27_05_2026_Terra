@@ -6,11 +6,11 @@ module "privatevm-sg" {
 
   description = "Security group for private VM"
 
-  vpc_id = module.vpc.vpc_id
+  vpc_id = module.my_vpc.vpc_id
 
-  ingress_rules = ["http-80-tcp", "ssh-22-tcp"]
+  ingress_rules = ["http-80-tcp", "ssh-tcp"]
 
-  ingress_cidr_blocks = [module.vpc.vpc_cidr_block]
+  ingress_cidr_blocks = [module.my_vpc.vpc_cidr_block]
 
   egress_rules = ["all-all"]
 

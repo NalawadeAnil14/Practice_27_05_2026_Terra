@@ -25,7 +25,7 @@ variable "instance_count" {
 
 variable "vpc_security_group_ids" {
   description = "ID of the security group to associate with the EC2 instance"
-  type        = string
+  type        = list(string)
 }
 
 variable "user_data" {
