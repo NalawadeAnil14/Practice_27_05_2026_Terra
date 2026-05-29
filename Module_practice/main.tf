@@ -1,8 +1,9 @@
 module "ec2-server" {
+  for_each      = toset(module.my_vpc.public_subnet_ids)
   source        = "./module/ec2"
   ami           = var.module_ami
   instance_type = var.module_instance_type
-  subnet_id     = element(module.my_vpc.public_subnet_ids, 0)
+  subnet_id     = each.value
 }
 
 module "my_vpc" {
