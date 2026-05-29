@@ -1,4 +1,5 @@
 module "ec2-server" {
+
   for_each      = toset(module.my_vpc.public_subnet_ids)
   source        = "./module/ec2"
   ami           = var.module_ami
