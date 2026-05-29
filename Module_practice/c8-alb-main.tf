@@ -33,6 +33,8 @@ module "alb" {
       name_prefix      = "mytg1"
       target_type      = "instance"
 
+      create_attachment = false
+
       load_balancing_cross_zone_enabled = false
       health_check = {
         path                = "/app1/index.html"
