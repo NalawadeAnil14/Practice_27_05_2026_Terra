@@ -50,8 +50,8 @@ module "alb" {
 }
 
 resource "aws_lb_target_group_attachment" "my_http_target_group_attachment" {
-  for_each         = toset(values(module.ec2-server)[*].instance_id)
+  for_each         = module.ec2-server
   target_group_arn = module.alb.target_groups["my-http-target-group"].arn
-  target_id        = each.value
+  target_id        = each.value.instance_id
   port             = 80
 }
