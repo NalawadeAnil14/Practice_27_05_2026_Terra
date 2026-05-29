@@ -32,3 +32,9 @@ variable "user_data" {
   description = "User data script to configure the EC2 instance"
   type        = string
 }
+
+variable "key_name" {
+  description = "Name of the key pair to use for the EC2 instance"
+  type        = string
+  default     = "Docker-key"
+}
